@@ -825,9 +825,7 @@ class TMC5161Stepper : public TMC5160Stepper {
 class TMC2208Stepper : public TMCStepper {
 	public:
 	    TMC2208Stepper(Stream * SerialPort, float RS, uint8_t addr, uint16_t mul_pin1, uint16_t mul_pin2);
-		TMC2208Stepper(Stream * SerialPort, float RS) :
-			TMC2208Stepper(SerialPort, RS, TMC2208_SLAVE_ADDR)
-			{}
+		TMC2208Stepper(Stream * SerialPort, float RS, uint8_t addr=TMC2208_SLAVE_ADDR);
 		#if SW_CAPABLE_PLATFORM
 			TMC2208Stepper(uint16_t SW_RX_pin, uint16_t SW_TX_pin, float RS) :
 				TMC2208Stepper(SW_RX_pin, SW_TX_pin, RS, TMC2208_SLAVE_ADDR)
@@ -998,7 +996,6 @@ class TMC2208Stepper : public TMCStepper {
 		struct OTP_PROG_t 	{ constexpr static uint8_t address = 0x04; };
 		struct OTP_READ_t 	{ constexpr static uint8_t address = 0x05; };
 
-		TMC2208Stepper(Stream * SerialPort, float RS, uint8_t addr);
 		#if SW_CAPABLE_PLATFORM
 			TMC2208Stepper(uint16_t SW_RX_pin, uint16_t SW_TX_pin, float RS, uint8_t addr);
 		#endif
